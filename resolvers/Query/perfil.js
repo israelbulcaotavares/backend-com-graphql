@@ -1,7 +1,8 @@
 const db = require('../../config/db')
 
 module.exports = {
-    perfis() {
+    perfis(context, args, ctx) {
+        ctx.db 
         return db('perfis')
     },
     perfil(_, { filtro }) {
