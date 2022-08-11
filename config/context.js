@@ -1,4 +1,4 @@
-module.exports = ( { req }) => {
+module.exports = async ( { req }) => {
     // console.log('Contexto')
     // return {
     //     texto: 'Curso GraphQL!',
@@ -7,6 +7,9 @@ module.exports = ( { req }) => {
     //     }
     // }
 
+    //Em desenvolvimento 
+    await require('./simularUsuarioLogado')(req)
+
     const auth = req.headers.authorization
-    console.log(auth)
+    console.log(auth)   
 }
