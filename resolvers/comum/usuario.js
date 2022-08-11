@@ -11,15 +11,16 @@ module.exports = {
             id: usuario.id, 
             nome: usuario.nome,
             email: usuario.email,
-            perfis: perfis.map(p => p.nome),
+            perfis,
             iat: agora,  
             exp: agora + (3 * 24 * 60 * 60)
         }
 
-        const authSecret = process.env.APP_AUTH_SECRET 
+    
         return{
             ...usuarioInfo,
-            token: jwt.encode(usuarioInfo, authSecret)
+            token: jwt.encode(usuarioInfo, 
+                process.env.APP_AUTH_SECRET )
         }
     }
 }
