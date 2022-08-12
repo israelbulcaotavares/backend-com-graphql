@@ -34,6 +34,8 @@ const jwt = require('jwt-simple')
     }
 
     const err = new Error('Acesso negado!')
+    console.log(usuario) 
+    console.log(admin)
 
     return{
         usuario,
@@ -43,6 +45,17 @@ const jwt = require('jwt-simple')
         },
         validarUsuario() {
             if(!admin) throw err 
+        },
+        validarUsuarioFiltro(filtro) {
+            if(admin) return 
+
+            if(!usuario) throw err 
+            if(!filtro) throw err
+
+            const {id, email } = filtro 
+            if(!id && !email) throw err 
+            if(id & id !== usuario.id) throw err 
+            if(email && email !== usuario.email) throw err 
         }
     }
      
