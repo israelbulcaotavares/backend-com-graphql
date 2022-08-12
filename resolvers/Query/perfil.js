@@ -2,10 +2,12 @@ const db = require('../../config/db')
 
 module.exports = {
     perfis(context, args, ctx) {
-        ctx.db 
+        ctx && ctx.validarAdmin()
         return db('perfis')
     },
-    perfil(_, { filtro }) {
+    perfil(_, { filtro }, ctx) {
+        ctx && ctx.validarAdmin()
+        
         if(!filtro) return null
         const { id, nome } = filtro
         if(id) {
